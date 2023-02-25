@@ -22,6 +22,8 @@ class Ejercicio2 : AppCompatActivity() {
             R.id.Home -> startActivity(Intent(this, MainActivity::class.java))
             R.id.ejercicio1 -> startActivity(Intent(this, Ejercicio1::class.java))
             R.id.ejercicio2 -> Toast.makeText(this,"Ejercicio 2", Toast.LENGTH_SHORT).show()
+            R.id.ejercicio3 -> startActivity(Intent(this, Ejercicio3::class.java))
+
         }
         return super.onOptionsItemSelected(item)
     }

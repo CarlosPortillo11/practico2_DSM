@@ -7,12 +7,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+class Ejercicio3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_ejercicio3)
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -20,11 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.Home -> Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show()
+            R.id.Home -> startActivity(Intent(this, MainActivity::class.java))
             R.id.ejercicio1 -> startActivity(Intent(this, Ejercicio1::class.java))
             R.id.ejercicio2 -> startActivity(Intent(this, Ejercicio2::class.java))
-            R.id.ejercicio3 -> startActivity(Intent(this, Ejercicio3::class.java))
-
+            R.id.ejercicio3 -> Toast.makeText(this,"Ejercicio 3", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
