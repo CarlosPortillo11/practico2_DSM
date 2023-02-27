@@ -1,10 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ejercicio3">
+    android:background="@color/simplebackgroundcolor"
+    tools:context=".Ejercicio3" >
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnMultiplicacion"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="57dp"
+        android:text="@string/btnMultiplicacion"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/resultBox"
+        app:layout_constraintEnd_toStartOf="@+id/btnDivision"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSuma" />
+
+    <Button
+        android:id="@+id/btnDivision"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="57dp"
+        android:text="@string/btnDivision"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/resultBox"
+        app:layout_constraintEnd_toStartOf="@+id/btnIgual"
+        app:layout_constraintStart_toEndOf="@+id/btnMultiplicacion"
+        app:layout_constraintTop_toBottomOf="@+id/btnResta" />
+
+    <Button
+        android:id="@+id/btnIgual"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="313dp"
+        android:text="@string/btnIgual"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDivision"
+        app:layout_constraintTop_toBottomOf="@+id/btnLimpiar" />
+
+    <Button
+        android:id="@+id/btnLimpiar"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/btnLimpiar"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnIgual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Number2Box" />
+
+    <EditText
+        android:id="@+id/Number2Box"
+        android:layout_width="99dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="21dp"
+        android:ems="10"
+        android:hint="@string/numberBox2"
+        android:textColorHint="@color/white"
+        android:background="@null"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLimpiar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Number1Box"
+        app:layout_constraintTop_toBottomOf="@+id/labelNumberTxt2" />
+
+    <EditText
+        android:id="@+id/Number1Box"
+        android:layout_width="99dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="21dp"
+        android:ems="10"
+        android:hint="@string/numberBox1"
+        android:textColorHint="@color/white"
+        android:background="@null"
+        android:inputType="numberDecimal"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSuma"
+        app:layout_constraintEnd_toStartOf="@+id/Number2Box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelNumberTxt1" />
+
+    <TextView
+        android:id="@+id/labelNumberTxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/labelNumber1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/Number1Box"
+        app:layout_constraintEnd_toStartOf="@+id/labelNumberTxt2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelNumberTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/labelNumber2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/Number2Box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelNumberTxt1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultBox"
+        android:layout_width="237dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="81dp"
+        android:text="@string/resultBox"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textDirection="inherit"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMultiplicacion" />
+
+    <Button
+        android:id="@+id/btnResta"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/btnResta"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnDivision"
+        app:layout_constraintEnd_toStartOf="@+id/btnLimpiar"
+        app:layout_constraintStart_toEndOf="@+id/btnSuma"
+        app:layout_constraintTop_toBottomOf="@+id/labelNumberTxt1" />
+
+    <Button
+        android:id="@+id/btnSuma"
+        android:layout_width="58dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/btnSuma"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnMultiplicacion"
+        app:layout_constraintEnd_toStartOf="@+id/btnResta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Number1Box" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

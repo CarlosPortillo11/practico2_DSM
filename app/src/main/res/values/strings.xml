@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Practico1_DSM</string>
+    #Ejercicio3
+    <string name="labelNumber1">Ingrese el primer número</string>
+    <string name="labelNumber2">Ingrese el segundo número</string>
+    <string name="numberBox1">0</string>
+    <string name="numberBox2">0</string>
+    <string name="btnSuma">+</string>
+    <string name="btnResta">-</string>
+    <string name="btnMultiplicacion">*</string>
+    <string name="btnDivision">/</string>
+    <string name="btnLimpiar">C</string>
+    <string name="btnIgual">=</string>
+    <string name="resultBox">0</string>
 </resources>
