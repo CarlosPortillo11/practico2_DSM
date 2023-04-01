@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "973282560223",
+    "project_id": "fir-practico2",
+    "storage_bucket": "fir-practico2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973282560223:android:ea8ac64a762b62fdab816a",
+        "android_client_info": {
+          "package_name": "com.example.practico1_dsm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973282560223-05ta8gfh0v05mgsddfp4hppcu78g824c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQSDYbRgZNQcxFNisLmA9oFmX1gz79cHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973282560223-05ta8gfh0v05mgsddfp4hppcu78g824c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Practico1_DSM</string>
+    <string name="app_name">Practico2_DSM</string>
+    #SplashScreen
+    <string name="SplashTitle">Practico2 DSM</string>
+    <string name="Alumno1">Carlos Emerson Portillo Martínez</string>
+    <string name="Alumno2">David Alexander Aguilar Panameño</string>
     #Ejercicio3
     <string name="labelNumber1">Ingrese el primer número</string>
     <string name="labelNumber2">Ingrese el segundo número</string>
