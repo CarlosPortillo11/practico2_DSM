@@ -19,7 +19,7 @@ class LoginScreen : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        loginBtn = findViewById<Button>(R.id.registerBtn)
+        loginBtn = findViewById<Button>(R.id.loginGoBtn)
 
         loginBtn.setOnClickListener {
             val email = findViewById<EditText>(R.id.nameRegisterTxt).text.toString()

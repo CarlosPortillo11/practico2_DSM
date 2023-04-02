@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import org.w3c.dom.Text
-import kotlin.math.sign
 
 class RegisterScreen : AppCompatActivity() {
 
@@ -23,11 +20,14 @@ class RegisterScreen : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        registerBtn = findViewById<Button>(R.id.registerBtn)
+        registerBtn = findViewById<Button>(R.id.registerGoBtn)
 
         registerBtn.setOnClickListener {
             val email = findViewById<EditText>(R.id.nameRegisterTxt).text.toString()
             val password = findViewById<EditText>(R.id.passwordRegisterTxt).text.toString()
+
+            Toast.makeText(applicationContext, email, Toast.LENGTH_LONG).show();
+            Toast.makeText(applicationContext, password, Toast.LENGTH_LONG).show();
             this.register(email, password)
         }
 
