@@ -5,37 +5,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import org.w3c.dom.Text
+import kotlin.math.sign
 
-class LoginScreen : AppCompatActivity() {
+class RegisterScreen : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var loginBtn: Button
-    private lateinit var createBtn: Button
+    private lateinit var registerBtn:Button
+    private lateinit var signBtn: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_screen)
+        setContentView(R.layout.activity_register_screen)
 
         auth = FirebaseAuth.getInstance()
 
-        loginBtn = findViewById<Button>(R.id.registerBtn)
+        registerBtn = findViewById<Button>(R.id.registerBtn)
 
-        loginBtn.setOnClickListener {
+        registerBtn.setOnClickListener {
             val email = findViewById<EditText>(R.id.nameRegisterTxt).text.toString()
             val password = findViewById<EditText>(R.id.passwordRegisterTxt).text.toString()
-            this.login(email, password);
+            this.register(email, password)
         }
 
-        createBtn = findViewById<Button>(R.id.goSignBtn)
-        createBtn.setOnClickListener {
-            this.goToRegister()
+        signBtn = findViewById<Button>(R.id.goSignBtn)
+        signBtn.setOnClickListener {
+            this.goToLogin()
         }
     }
 
-    private fun login(email: String, password: String){
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
-            if (task.isSuccessful){
+    private fun register(email: String, password: String){
+
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{ task ->
+            if(task.isSuccessful){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -45,9 +50,8 @@ class LoginScreen : AppCompatActivity() {
         }
     }
 
-    private fun goToRegister(){
-        val intent = Intent(this, RegisterScreen::class.java)
+    private fun goToLogin(){
+        val intent = Intent(this, LoginScreen::class.java)
         startActivity(intent)
     }
-
 }

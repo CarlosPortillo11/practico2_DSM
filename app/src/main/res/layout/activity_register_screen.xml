@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00BCD4"
-    tools:context=".LoginScreen">
+    tools:context=".RegisterScreen">
 
     <Button
         android:id="@+id/goSignBtn"
@@ -17,7 +17,7 @@
         android:layout_marginBottom="131dp"
         android:background="#00000000"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Create Account"
+        android:text="Iniciar Sesión"
         android:textAllCaps="true"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -63,10 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
         android:layout_marginTop="53dp"
-        android:layout_marginEnd="299dp"
+        android:layout_marginEnd="246dp"
         android:layout_marginBottom="126dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Login"
+        android:text="Register"
         android:textAllCaps="true"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -119,7 +119,7 @@
         android:backgroundTint="#000000"
         android:backgroundTintMode="add"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="Login"
+        android:text="Registrarse"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
