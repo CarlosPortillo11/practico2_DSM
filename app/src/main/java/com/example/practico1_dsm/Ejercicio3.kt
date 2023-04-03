@@ -9,8 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import kotlin.math.truncate
-import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
