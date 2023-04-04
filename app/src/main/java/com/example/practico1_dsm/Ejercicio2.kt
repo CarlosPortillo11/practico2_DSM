@@ -1,57 +1,146 @@
 package com.example.practico1_dsm
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlin.math.roundToInt
+import com.google.firebase.database.*
+import com.example.practico1_dsm.datos.Empleados
+
 
 class Ejercicio2 : AppCompatActivity() {
 
-    private lateinit var dbRef : DatabaseReference
+    var consultaOrdenada:Query = refEmpleados.orderByChild("empNombre")
+    var EmpleadosLista:MutableList<Empleados>? = null
+    var listaEmpleados: ListView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio2)
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Empleados")
+        val listaEmpleados = findViewById<ListView>(R.id.ListaEmpleados)
         val btnSalario = findViewById<Button>(R.id.btnSalario)
 
+       inicializar();
+
         btnSalario.setOnClickListener{
-            GuardarEmpleado()
+
+            guardar();
         }
+
+
     }
 
-    private fun GuardarEmpleado() {
-        val nombre = findViewById<EditText>(R.id.txtNombre)
-        val salarioBase = findViewById<EditText>(R.id.txtSalarioBase)
 
-        val empNombre = nombre.text.toString()
-        val empSalarioNeto = salarioBase.text.toString()
+    private fun guardar() {
+        var database:FirebaseDatabase = FirebaseDatabase.getInstance()
+        var refEmpleados:DatabaseReference = database.getReference("Empleados")
 
-        val empId = dbRef.push().key!!
-        val empleado = Eje2EmpleadosModel(empId, empNombre, empSalarioNeto)
+        val nombre = findViewById<EditText>(R.id.txtNombre).text.toString()
+        val salarioBase = findViewById<EditText>(R.id.txtSalarioBase).text.toString().toDouble()
 
+        val ISSS = salarioBase - (salarioBase * 0.97)
+        val AFP =  salarioBase - (salarioBase * 0.96)
+        val RENTA = salarioBase - (salarioBase * 0.95)
+        val salarioNeto = salarioBase - ISSS - AFP - RENTA
 
-        dbRef.child(empId).setValue(empleado)
-            .addOnCompleteListener{
-                Toast.makeText(this, "Los datos se insertaron", Toast.LENGTH_SHORT).show()
-                nombre.setText("")
-                salarioBase.setText("")
+        val empleado = Empleados(nombre,salarioNeto)
+
+        refEmpleados.child(nombre).get().addOnSuccessListener{
+            if(it.value != null){
+                val key = refEmpleados.child("epmNombre").push().key
+                if(key == null){
+                    Toast.makeText(applicationContext, "Llave vacía", Toast.LENGTH_SHORT).show()
+                }
+                val empleadosValues = empleado.toMap()
+                val childUpdates = hashMapOf<String, Any>(
+                    "$nombre" to empleadosValues
+                )
+                refEmpleados.updateChildren(childUpdates)
+                Toast.makeText(applicationContext, "Registro actualizado correctamente", Toast.LENGTH_LONG).show()
             }
-            .addOnFailureListener{ error ->
-                Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+            else{
+                refEmpleados.child(nombre).setValue(empleado).addOnSuccessListener {
+                    Toast.makeText(this, "El dato se guardó con exito", Toast.LENGTH_LONG).show()
+                }.addOnFailureListener{
+                    Toast.makeText(this, "Dato no almacenado, corrija e intente de nuevo", Toast.LENGTH_LONG).show()
+                }
             }
+        }.addOnFailureListener{
+            val temp = it
+            Toast.makeText(applicationContext, "No conseguimos nada", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Es: "+it, Toast.LENGTH_LONG).show()
+        }
 
     }
+    private fun inicializar() {
+        EmpleadosLista = ArrayList<Empleados>()
+        val listaEmpleados = findViewById<ListView>(R.id.ListaEmpleados);
+        var EmpleadosArray = ArrayList<String>()
+
+        consultaOrdenada.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                EmpleadosLista!!.removeAll( EmpleadosLista!!)
+                for (dato in snapshot.children){
+                    val empleado :Empleados? = dato.getValue(Empleados::class.java)
+                    empleado?.key(dato.key)
+                    if(empleado != null){
+                        EmpleadosLista!!.add(empleado)
+                    }
+                }
+                val Adapter = AdaptadorEmpleado(this@Ejercicio2,EmpleadosLista as ArrayList<Empleados>)
+                listaEmpleados!!.adapter = Adapter
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+        listaEmpleados!!.onItemLongClickListener = object : AdapterView.OnItemLongClickListener {
+            override fun onItemLongClick(
+                adapterView: AdapterView<*>?,
+                view: View,
+                position: Int,
+                l: Long
+            ): Boolean {
+                
+                val ad = AlertDialog.Builder(this@Ejercicio2)
+                ad.setMessage("Está seguro de eliminar registro?")
+                    .setTitle("Confirmación")
+                ad.setPositiveButton("Si"
+                ) { dialog, id ->
+                    EmpleadosLista!![position].nombre?.let {
+                        refEmpleados.child(it).removeValue()
+                    }
+                    Toast.makeText(
+                        this@Ejercicio2,
+                        "Registro borrado!", Toast.LENGTH_SHORT
+                    ).show()
+                }
+                ad.setNegativeButton("No", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface, id: Int) {
+                        Toast.makeText(
+                            this@Ejercicio2,
+                            "Operación de borrado cancelada!", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+                ad.show()
+                return true
+            }
+
+        }
+
+    }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,6 +158,11 @@ class Ejercicio2 : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    companion object{
+        var database:FirebaseDatabase = FirebaseDatabase.getInstance()
+        var refEmpleados:DatabaseReference = database.getReference("Empleados")
+    }
+
 }
 
 
