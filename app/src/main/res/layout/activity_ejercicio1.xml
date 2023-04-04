@@ -90,6 +90,24 @@
             android:layout_height="wrap_content"
             android:text="Calcular" />
 
+        <Spinner
+            android:id="@+id/estudiantesSpinner"
+            android:layout_width="349dp"
+            android:layout_height="42dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/eliminarBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Eliminar Registro" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/txtPromedio"
             android:layout_width="match_parent"
@@ -105,5 +123,6 @@
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="16sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
